@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FuseDroid</string>
+    <string name="error">Error</string>
+    <string name="warning">Warning</string>
+
+    <string name="writable">Writable</string>
+
+    <string name="message_input_dir">Input the full path of the dir that you wish to mount and click \"Mount\" button.</string>
+    <string name="mount">Mount</string>
+    <string name="title_activity_property">PropertyActivity</string>
+    <string name="message_mounted1">%1$s is mounted</string>
+    <string name="message_mounted2">%1$s is mounted on\n%2$s</string>
+    <string name="copy_to_clipboard">Copy the full path of the mount point to clipboard</string>
+    <string name="copied_to_clipboard">\"%1$s\" is copied to clipboard</string>
+    <string name="umount">Unmount</string>
+    <string name="write_enable">Write enable</string>
+
+    <string name="error_no_superuser">Superuser is not installed.\n
+        This application needs Superuser (https://play.google.com/store/apps/details?id=com.noshufou.android.su)</string>
+    <string name="error_cannot_make_mount_point_root">Cannot make mount point %1$s or %2$s</string>
+    <string name="error_cannot_copy_binary">Cannot copy executable binary to your dir.</string>
+    <string name="error_dir_does_not_exist">Dir %1$s does not exist.</string>
+    <string name="error_already_mounted">Already mounted</string>
+    <string name="error_mount_fail">Mount fail.</string>
+    <string name="error_umount_fail">Unmount fail.</string>
+
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <target name="-pre-build">
+        <ant dir="../mount.fusedroid" />
+        <antcall target="copy" /> 
+    </target>
+    
+    <target name="copy">
+	    <copy todir="assets">
+	        <fileset dir="../mount.fusedroid/out">
+	            <include name="**" />
+	        </fileset>
+	    </copy>
+    </target>
+</project>
