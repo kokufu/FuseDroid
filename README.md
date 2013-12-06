@@ -1,11 +1,13 @@
 FuseDroid
-========
+=========
 
 FuseDroid is an Android application that allows you to mount a dir on another dir, with read and write permission to all other apps.
 By using this app, you can access a non permitted file, such as /data/data/{package_name}, with a non rooted app.
 
 This is an experimental app.
 If you find any bugs, please kindly contact me through PullRequest or email.
+
+[FuseDroid on Google Play](https://play.google.com/store/apps/details?id=com.kokufu.android.apps.fusedroid)
 
 ## System Requirements
 To use this app, the android device must have the following:
@@ -62,7 +64,7 @@ $ cd project/FuseDroid
 $ ant debug
 </pre>
 
-### for WIndows (on Cygwin)
+### for Windows (on Cygwin)
 For the first time only, execute the below:
 <pre>
 $ cd project/FuseDroid
@@ -79,7 +81,8 @@ $ ant debug
 </pre>
 
 ## Credits
-This application uses fuse (Filesystem in Userspace).
+This application uses fuse (Filesystem in Userspace).<br />
+[http://fuse.sourceforge.net/](http://fuse.sourceforge.net/)
 
 ## Acknowledgement
 This app was inspired by [fuse-android](https://github.com/seth-hg/fuse-android)
