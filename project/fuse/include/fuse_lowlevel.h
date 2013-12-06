@@ -20,7 +20,7 @@
  */
 
 #ifndef FUSE_USE_VERSION
-#define FUSE_USE_VERSION 26
+#define FUSE_USE_VERSION 24
 #endif
 
 #include "fuse_common.h"

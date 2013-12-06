@@ -20,7 +20,7 @@
  */
 
 #ifndef FUSE_USE_VERSION
-#define FUSE_USE_VERSION 28
+#define FUSE_USE_VERSION 21
 #endif
 
 #include "fuse_common.h"
@@ -32,7 +32,6 @@
 #include <sys/stat.h>
 #include <sys/statvfs.h>
 #include <sys/uio.h>
-#include <pthread.h>
 
 #ifdef __cplusplus
 extern "C" {

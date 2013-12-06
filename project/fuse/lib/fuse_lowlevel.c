@@ -450,11 +450,9 @@ static int fuse_send_data_iov_fallback(struct fuse_ll *f, struct fuse_chan *ch,
 		return fuse_send_msg(f, ch, iov, iov_count);
 	}
 
-#ifndef __ANDROID__
 	res = posix_memalign(&mbuf, pagesize, len);
 	if (res != 0)
 		return res;
-#endif
 
 	mem_buf.buf[0].mem = mbuf;
 	res = fuse_buf_copy(&mem_buf, buf, 0);

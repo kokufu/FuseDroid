@@ -4,12 +4,12 @@
         <ant dir="../mount.fusedroid" />
         <antcall target="copy" /> 
     </target>
-    
+
     <target name="copy">
-	    <copy todir="assets">
-	        <fileset dir="../mount.fusedroid/out">
-	            <include name="**" />
-	        </fileset>
-	    </copy>
+        <copy todir="assets">
+            <fileset dir="../mount.fusedroid/out">
+                <include name="**" />
+            </fileset>
+        </copy>
     </target>
 </project>

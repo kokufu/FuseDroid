@@ -4582,11 +4582,7 @@ void fuse_stop_cleanup_thread(struct fuse *f)
 {
 	if (lru_enabled(f)) {
 		pthread_mutex_lock(&f->lock);
-#ifndef __ANDROID__
 		pthread_cancel(f->prune_thread);
-#else
-		pthread_kill(f->prune_thread, SIGUSR1);
-#endif
 		pthread_mutex_unlock(&f->lock);
 		pthread_join(f->prune_thread, NULL);
 	}

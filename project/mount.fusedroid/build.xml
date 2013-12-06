@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="mount.fusedroid" default="all">
-    <target name="all">
+    <target name="all" depends="build">
+    </target>
+
+    <available file="src/fuse" property="isCopied" />
+    <target name="prepareFuse" unless="isCopied">
+        <copy todir="src/fuse">
+            <fileset dir="../fuse">
+                <include name="**" />
+            </fileset>
+        </copy>
+
+        <patch patchfile="patches/fuse-2.9.3_android.patch" strip="0" dir="src/fuse" />
+    </target>
+
+    <target name="build" depends="prepareFuse">
         <exec executable="ndk-build" failonerror="true">
             <arg value="NDK_PROJECT_PATH=${PWD}" />
-            <arg value="NDK_APPLICATION_MK=\$(NDK_PROJECT_PATH)/Application.mk" />
-            <arg value="NDK_APP_DST_DIR=\$(NDK_PROJECT_PATH)/out/\$(TARGET_ARCH_ABI)" />
+            <arg value="NDK_APPLICATION_MK=$(NDK_PROJECT_PATH)/Application.mk" />
+            <arg value="NDK_APP_DST_DIR=$(NDK_PROJECT_PATH)/out/$(TARGET_ARCH_ABI)" />
             <arg value="APP_ABI=all" />
         </exec>
     </target>

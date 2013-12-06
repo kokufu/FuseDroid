@@ -77,13 +77,9 @@ static void *fuse_do_work(void *data)
 		};
 		int res;
 
-#ifndef __ANDROID__
 		pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
-#endif
 		res = fuse_session_receive_buf(mt->se, &fbuf, &ch);
-#ifndef __ANDROID__
 		pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, NULL);
-#endif
 		if (res == -EINTR)
 			continue;
 		if (res <= 0) {
@@ -247,11 +243,7 @@ int fuse_session_loop_mt(struct fuse_session *se)
 
 		pthread_mutex_lock(&mt.lock);
 		for (w = mt.main.next; w != &mt.main; w = w->next)
-#ifndef __ANDROID__
 			pthread_cancel(w->thread_id);
-#else
-			pthread_kill(w->thread_id, SIGUSR1);
-#endif
 		mt.exit = 1;
 		pthread_mutex_unlock(&mt.lock);
 
