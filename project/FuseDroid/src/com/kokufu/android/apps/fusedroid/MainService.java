@@ -88,7 +88,7 @@ public class MainService extends Service {
             throw new IllegalArgumentException("Action " + action + " is not supported.");
         }
 
-        return super.onStartCommand(intent, flags, startId);
+        return START_STICKY_COMPATIBILITY;
     }
 
     private boolean initialize() {
