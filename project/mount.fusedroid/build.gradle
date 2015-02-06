@@ -1,0 +1,8 @@
+ant.importBuild 'build.xml'
+
+configurations.create('default')
+
+def out = artifacts.add('default', file('out')).builtBy(build)
+out.setName('mount.fusedroid')
+out.setType("executable")
+out.setExtension('')

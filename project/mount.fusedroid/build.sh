@@ -1,3 +1,0 @@
-#!/bin/sh
-
-ndk-build  NDK_PROJECT_PATH=${PWD} NDK_APPLICATION_MK="\$(NDK_PROJECT_PATH)/Application.mk" NDK_APP_DST_DIR="\${NDK_PROJECT_PATH}/out/\$(TARGET_ARCH_ABI)"

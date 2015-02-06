@@ -1,8 +1,1 @@
-.project
-.classpath
-.settings/
-local.properties
-build.xml
-bin/
-gen/
-assets/*/mount.fusedroid
+/build

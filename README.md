@@ -47,38 +47,25 @@ This app consists of two projects:
 To build this app, the followings are required.
 
 1. installed android-ndk
-2. installed android-sdk
-3. installed ant (Instead of this, you might be able to use Eclipse or other IDE.)
-4. the paths are made correctly.
+1. installed android-sdk
+1. the paths are made correctly.
 
-### for Linux
+### Preparing
 For the first time only, execute the below:
 <pre>
 $ cd project/FuseDroid
 $ android update project -p ./
 </pre>
 
+### Building
 Build like below.
+(On Windows, use gradlew.bat instead of gradlew.)
 <pre>
-$ cd project/FuseDroid
-$ ant debug
+$ cd project
+$ ./gradlew build
 </pre>
 
-### for Windows (on Cygwin)
-For the first time only, execute the below:
-<pre>
-$ cd project/FuseDroid
-$ android update project -p ./
-</pre>
-
-Build like below.
-<pre>
-$ cd project/mount.fusedroid
-$ ./build.sh
-$ cp -r out/* ../FuseDroid/assets
-$ cd ../FuseDroid
-$ ant debug
-</pre>
+Then you can find apks in <code>project/FuseDroid/build/outputs/apk</code>
 
 ## Credits
 This application uses fuse (Filesystem in Userspace).<br />

@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+
+    defaultConfig {
+        applicationId "com.kokufu.android.apps.fusedroid"
+        minSdkVersion 5
+        targetSdkVersion 21
+        versionCode 20140323
+        versionName "0.2"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':mount.fusedroid')
+}
+
+// Belows are temporary
+
+task copyMountFusedroid << {
+    project(':mount.fusedroid').configurations['default'].artifacts.files.each {
+        def fromFile = it
+        copy {
+            from fromFile
+            into 'src/main/assets'
+        }
+    }
+}
+
+afterEvaluate {
+    copyMountFusedroid.dependsOn project(':mount.fusedroid').tasks.getByName('build')
+    preBuild.dependsOn copyMountFusedroid
+}
