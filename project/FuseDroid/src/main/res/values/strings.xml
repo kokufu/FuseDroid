@@ -17,8 +17,11 @@
     <string name="umount">Unmount</string>
     <string name="write_enable">Write enable</string>
 
-    <string name="error_no_superuser">Superuser is not installed.\n
-        This application needs Superuser (https://play.google.com/store/apps/details?id=com.noshufou.android.su)</string>
+    <string name="error_no_su">su binary is not installed.\n
+        This application needs Superuser ( https://play.google.com/store/apps/details?id=com.noshufou.android.su )\n
+        Or\n
+        SuperSU ( https://play.google.com/store/apps/details?id=eu.chainfire.supersu )
+        </string>
     <string name="error_cannot_make_mount_point_root">Cannot make mount point %1$s or %2$s</string>
     <string name="error_cannot_copy_binary">Cannot copy executable binary to your dir.</string>
     <string name="error_dir_does_not_exist">Dir %1$s does not exist.</string>

@@ -12,7 +12,7 @@ If you find any bugs, please kindly contact me through PullRequest or email.
 ## System Requirements
 To use this app, the android device must have the following:
 
-1. SuperUser must be installed.
+1. su binary (SuperUser or SuperSU) must be installed.
 2. Fuse kernel must be installed.
 
 You can check whether the fuse kernel is installed or not by using the following commands: 

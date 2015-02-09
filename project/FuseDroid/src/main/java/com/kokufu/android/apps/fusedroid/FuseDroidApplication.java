@@ -1,14 +1,12 @@
 
 package com.kokufu.android.apps.fusedroid;
 
+import com.kokufu.android.apps.fusedroid.dialog.ErrorDialogActivity;
+
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.Environment;
-
-import com.kokufu.android.apps.fusedroid.dialog.ErrorDialogActivity;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,11 +22,12 @@ public class FuseDroidApplication extends android.app.Application {
     public void onCreate() {
         super.onCreate();
 
-        PackageManager pm = getPackageManager();
+        // Check whether su is installed and executable
         try {
-            pm.getApplicationInfo("com.noshufou.android.su", 0);
-        } catch (NameNotFoundException e) {
-            String errorMessage = getString(R.string.error_no_superuser);
+            RootedShell shell = new RootedShell(null, null);
+            shell.exit();
+        } catch (IOException e) {
+            String errorMessage = getString(R.string.error_no_su);
             Intent intent = new Intent(getApplicationContext(), ErrorDialogActivity.class);
             intent.putExtra(ErrorDialogActivity.EXTRA_TITLE, getString(R.string.error));
             intent.putExtra(ErrorDialogActivity.EXTRA_TEXT, errorMessage);
