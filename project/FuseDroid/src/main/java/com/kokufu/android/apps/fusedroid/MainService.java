@@ -14,6 +14,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -282,32 +283,16 @@ public class MainService extends Service {
         return result[0];
     }
 
-    @SuppressWarnings("deprecation")
     private Notification makeNotification(String ticker, String title, String text,
             PendingIntent intent) {
-        Notification notification = new Notification(
-                R.drawable.ic_notification,
-                ticker,
-                System.currentTimeMillis());
-        notification.setLatestEventInfo(getApplicationContext(),
-                title,
-                text,
-                intent);
-        return notification;
-    }
-
-    @SuppressWarnings("deprecation")
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private Notification makeNotification11(String ticker, String title, String text,
-            PendingIntent intent) {
-        return new Notification.Builder(
+        return new NotificationCompat.Builder(
                 getApplicationContext())
                 .setSmallIcon(R.drawable.ic_notification)
                 .setTicker(ticker)
                 .setContentTitle(title)
                 .setContentText(text)
                 .setContentIntent(intent)
-                .getNotification();
+                .build();
 
     }
 
@@ -432,8 +417,6 @@ public class MainService extends Service {
                 Notification notification;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     notification = makeNotification16(ticker, title, text, intent);
-                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                    notification = makeNotification11(ticker, title, text, intent);
                 } else {
                     notification = makeNotification(ticker, title, text, intent);
                 }
