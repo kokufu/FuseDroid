@@ -52,6 +52,12 @@ public class FuseDroidApplication extends android.app.Application {
                     shell.stdinLine("mkdir " + mMountRootDir.getAbsolutePath());
                     shell.exit();
                 } catch (IOException e) {
+                    // Do nothing
+                    // Error dialog will be shown.
+                }
+
+                // Couldn't make dir. show error dialog.
+                if (!mountRootDir2.exists() || !mountRootDir2.isDirectory()) {
                     String errorMessage = getString(R.string.error_cannot_make_mount_point_root,
                             mMountRootDir,
                             mountRootDir2);
