@@ -8,8 +8,8 @@ android {
         applicationId "com.kokufu.android.apps.fusedroid"
         minSdkVersion 5
         targetSdkVersion 23
-        versionCode 20150209
-        versionName "0.3"
+        versionCode 20151012
+        versionName "0.3.1"
     }
     buildTypes {
         release {
