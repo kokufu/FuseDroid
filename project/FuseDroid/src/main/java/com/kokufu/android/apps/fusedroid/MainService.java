@@ -88,8 +88,7 @@ public class MainService extends Service {
         } else {
             throw new IllegalArgumentException("Action " + action + " is not supported.");
         }
-
-        return START_STICKY_COMPATIBILITY;
+        return START_REDELIVER_INTENT;
     }
 
     private boolean initialize() {
