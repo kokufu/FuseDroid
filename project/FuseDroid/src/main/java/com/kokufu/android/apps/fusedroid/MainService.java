@@ -26,6 +26,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -130,16 +131,19 @@ public class MainService extends Service {
 
                 try {
                     copyFileFromAssets(MOUNT_COMMAND_ASSETS, sMountCommandFile);
+                } catch (FileNotFoundException e) {
+                    showErrorDialog(getString(R.string.error_not_supported_cpu, Build.CPU_ABI));
+                } catch (IOException e) {
+                    showErrorDialog(getString(R.string.error_cannot_copy_binary, sMountCommandFile.getAbsolutePath()));
+                    return false;
+                }
+
+                try {
                     execCommmandAsRoot("chmod 700 " + sMountCommandFile.getAbsolutePath());
 
                     writeFirstLine(versionFile, versionName);
                 } catch (IOException e) {
-                    Intent intent = new Intent(getApplicationContext(), ErrorDialogActivity.class);
-                    intent.putExtra(ErrorDialogActivity.EXTRA_TITLE, getString(R.string.error));
-                    intent.putExtra(ErrorDialogActivity.EXTRA_TEXT,
-                            getString(R.string.error_cannot_copy_binary));
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
+                    showErrorDialog(getString(R.string.error_preparing_binary));
                     return false;
                 }
             }
@@ -308,6 +312,14 @@ public class MainService extends Service {
                 .build();
     }
 
+    private void showErrorDialog(String text) {
+        Intent intent = new Intent(getApplicationContext(), ErrorDialogActivity.class);
+        intent.putExtra(ErrorDialogActivity.EXTRA_TITLE, getString(R.string.error));
+        intent.putExtra(ErrorDialogActivity.EXTRA_TEXT, text);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
     private static class MountInfo {
         public final int mId;
         public final String mTargetDirPath;
@@ -343,12 +355,7 @@ public class MainService extends Service {
                 // Do nothing
             }
             if (!result) {
-                Intent intent = new Intent(getApplicationContext(), ErrorDialogActivity.class);
-                intent.putExtra(ErrorDialogActivity.EXTRA_TITLE, getString(R.string.error));
-                intent.putExtra(ErrorDialogActivity.EXTRA_TEXT,
-                        getString(R.string.error_dir_does_not_exist, mInfo.mTargetDirPath));
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                showErrorDialog(getString(R.string.error_dir_does_not_exist, mInfo.mTargetDirPath));
                 return false;
             }
 
@@ -370,12 +377,7 @@ public class MainService extends Service {
                     String command = sb.toString();
                     result = (execCommmandAsRoot(command) == 0);
                 } catch (IOException e) {
-                    Intent intent = new Intent(getApplicationContext(), ErrorDialogActivity.class);
-                    intent.putExtra(ErrorDialogActivity.EXTRA_TITLE, getString(R.string.error));
-                    intent.putExtra(ErrorDialogActivity.EXTRA_TEXT,
-                            getString(R.string.error_mount_fail));
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
+                    showErrorDialog(getString(R.string.error_mount_fail));
                     return false;
                 }
 
@@ -453,12 +455,7 @@ public class MainService extends Service {
 
                 result = (execCommmandAsRoot(command) == 0);
             } catch (IOException e) {
-                Intent intent = new Intent(getApplicationContext(), ErrorDialogActivity.class);
-                intent.putExtra(ErrorDialogActivity.EXTRA_TITLE, getString(R.string.error));
-                intent.putExtra(ErrorDialogActivity.EXTRA_TEXT,
-                        getString(R.string.error_umount_fail));
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                showErrorDialog(getString(R.string.error_umount_fail));
                 return false;
             }
 

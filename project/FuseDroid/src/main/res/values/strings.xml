@@ -23,7 +23,10 @@
         SuperSU ( https://play.google.com/store/apps/details?id=eu.chainfire.supersu )
         </string>
     <string name="error_cannot_make_mount_point_root">Cannot make mount point %1$s or %2$s</string>
-    <string name="error_cannot_copy_binary">Cannot copy executable binary to your dir.</string>
+    <string name="error_not_supported_cpu">CPU %s is not supported.\n
+        Please contact kokufu.ym@gmail.com for details.</string>
+    <string name="error_cannot_copy_binary">Cannot copy executable binary to the dir %s.</string>
+    <string name="error_preparing_binary">Cannot prepare executable binary.</string>
     <string name="error_dir_does_not_exist">Dir %1$s does not exist.</string>
     <string name="error_already_mounted">Already mounted</string>
     <string name="error_mount_fail">Mount fail.</string>
